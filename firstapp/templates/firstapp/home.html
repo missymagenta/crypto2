@@ -1,3 +1,6 @@
+{% extends 'firstapp/base.html' %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +8,38 @@
     <title>Home</title>
 </head>
 <body>
-<h3>This is home</h3>
+
+{% block content %}
+
+
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to Cryptonews!</h1>
+  <p class="lead">Best source for Blockchain News</p>
+</div>
+
+<div class="container">
+    <div class="row">
+{% for x in api.Data %}
+
+        <div class="col-sm">
+        <div class="card" style="width: 18rem;">
+            <img src="{{ x.imageurl }}" class="card-img-top" alt="{{ x.source }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ x.title }}</h5>
+                <a href="{{ x.url }}" class="btn btn-secondary">Read more</a>
+            </div>
+        </div>
+            </div>
+       {% endfor %}
+
+    </div>
+            <br />
+</div>
+
+
+
+{% endblock %}
+
+
 </body>
 </html>
