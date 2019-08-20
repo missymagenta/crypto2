@@ -9,33 +9,59 @@
 </head>
 <body>
 
+
 {% block content %}
 
 
 <div class="jumbotron">
-  <h1 class="display-4">Welcome to Cryptonews!</h1>
-  <p class="lead">Best source for Blockchain News</p>
+    <h1 class="display-4">Welcome to Cryptonews!</h1>
+    <p class="lead">Best source for Blockchain News</p>
 </div>
 
+
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">Coin</th>
+        <th scope="col">Price in EUR</th>
+        <th scope="col">Market High</th>
+        <th scope="col">Market Low</th>
+        <th scope="col">Market Cap</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for key, value in price.DISPLAY.items %}
+
+    <tr>
+        <td>{{ key }}</td>
+        <td>{{ value.EUR.PRICE }}</td>
+        <td>{{ value.EUR.HIGHDAY }}</td>
+        <td>{{ value.EUR.LOWDAY }}</td>
+        <td>{{ value.EUR.MKTCAP }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+    <br/>
 <div class="container">
     <div class="row">
-{% for x in api.Data %}
+        {% for x in api.Data %}
 
         <div class="col-sm">
-        <div class="card" style="width: 18rem;">
-            <img src="{{ x.imageurl }}" class="card-img-top" alt="{{ x.source }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ x.title }}</h5>
-                <a href="{{ x.url }}" class="btn btn-secondary">Read more</a>
+            <div class="card" style="width: 18rem;">
+                <img src="{{ x.imageurl }}" class="card-img-top" alt="{{ x.source }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ x.title }}</h5>
+                    <a href="{{ x.url }}" class="btn btn-secondary">Read more</a>
+                </div>
             </div>
         </div>
-            </div>
-       {% endfor %}
+        {% endfor %}
 
     </div>
-            <br />
+    <br/>
 </div>
-
 
 
 {% endblock %}
